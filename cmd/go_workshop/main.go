@@ -1,24 +1,16 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
-	"github.com/gorilla/mux"
+	"github.com/s1hofmann/go_workshop/internal/routing"
 )
 
 func main() {
 	log.Print("The application is starting...")
 
-	r := mux.NewRouter()
-	r.HandleFunc("/home", rootHandler())
+	r := routing.NewBLRouter()
 
 	log.Fatal(http.ListenAndServe(":8080", r))
-}
-
-func rootHandler() http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello world!\n")
-	}
 }
