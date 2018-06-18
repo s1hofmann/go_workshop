@@ -4,13 +4,17 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func main() {
 	log.Print("The application is starting...")
 
-	http.HandleFunc("/", rootHandler())
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	r := mux.NewRouter()
+	r.HandleFunc("/home", rootHandler())
+
+	log.Fatal(http.ListenAndServe(":8080", r))
 }
 
 func rootHandler() http.HandlerFunc {
