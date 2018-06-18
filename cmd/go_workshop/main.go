@@ -24,7 +24,7 @@ func main() {
 
 	var blServer, diagServer http.Server
 
-	srvErrs := make(chan error, 1)
+	srvErrs := make(chan error, 2)
 
 	go func() {
 		r := routing.NewBLRouter()
@@ -52,7 +52,7 @@ func main() {
 	}()
 
 	interrupt := make(chan os.Signal, 1)
-	signal.Notify(interrupt, os.Interrupt, syscall.SIGTERM)
+	signal.Notify(interrupt, syscall.SIGINT, syscall.SIGTERM)
 
 	select {
 	case killSignal := <-interrupt:

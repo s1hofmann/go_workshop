@@ -2,7 +2,11 @@ PROJECT?=github.com/s1hofmann/go_workshop
 BUILD_PATH?=./cmd/go_workshop
 
 ifndef COMMIT
-	COMMIT := git-$(shell git rev-parse --short HEAD)
+	COMMIT := $(shell git rev-parse --short HEAD)
+endif
+
+ifndef BUILD_TIME
+	BUILD_TIME := $(shell date +%Y%m%d%H%M%S)
 endif
 
 RELEASE?=0.0.1
