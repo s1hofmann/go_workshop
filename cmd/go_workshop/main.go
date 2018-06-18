@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/s1hofmann/go_workshop/internal/routing"
 )
@@ -10,7 +11,12 @@ import (
 func main() {
 	log.Print("The application is starting...")
 
+	port := os.Getenv("PORT")
+	if port == "" {
+		log.Fatal("The port wasn't set")
+	}
+
 	r := routing.NewBLRouter()
 
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Fatal(http.ListenAndServe(":8000", r))
 }
