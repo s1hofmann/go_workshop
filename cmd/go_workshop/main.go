@@ -2,13 +2,15 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 )
 
 func main() {
+	log.Print("The application is starting...")
 
 	http.HandleFunc("/", rootHandler())
-	http.ListenAndServe(":8080", nil)
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
 func rootHandler() http.HandlerFunc {
