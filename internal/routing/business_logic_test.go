@@ -9,7 +9,6 @@ import (
 func TestNewBLRouter(t *testing.T) {
 	r := NewBLRouter()
 	srv := httptest.NewServer(r)
-	srv.Start()
 	defer srv.Close()
 
 	testCases := []struct {
